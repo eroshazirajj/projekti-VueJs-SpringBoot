@@ -4,7 +4,6 @@ const api = axios.create({
     baseURL: 'http://localhost:8081/api'
 });
 
-// Ky interceptor e merr token-in nga localStorage para se te niset cdo kerkese
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
     if (token) {

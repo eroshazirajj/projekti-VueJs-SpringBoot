@@ -1,10 +1,19 @@
 package com.project.backend.controllers;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.project.backend.models.Product;
 import com.project.backend.repositories.CategoryRepository;
@@ -29,7 +38,7 @@ public class ProductController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')") // Vetëm Admini shton produkte
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
         if (product.getCategory() != null && product.getCategory().getId() != null) {
             categoryRepository.findById(product.getCategory().getId())
@@ -39,7 +48,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')") // Vetëm Admini mund të editojë
+    @PreAuthorize("hasRole('ADMIN')") 
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Valid @RequestBody Product details) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Produkti nuk u gjet!"));
@@ -57,7 +66,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')") // Vetëm Admini mund të fshijë
+    @PreAuthorize("hasRole('ADMIN')") 
     public ResponseEntity<?> delete(@PathVariable Long id) {
         productRepository.deleteById(id);
         return ResponseEntity.ok().build();

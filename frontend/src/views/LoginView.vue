@@ -13,8 +13,6 @@
           <label>Password</label>
           <input v-model="form.password" type="password" placeholder="••••••••" required />
         </div>
-
-        <!-- FUSHA E RE PER ROLIN (Vetem gjate regjistrimit) -->
         <div class="input-group" v-if="!isLogin">
           <label>Zgjidh Rolin</label>
           <select v-model="form.role" class="role-select">

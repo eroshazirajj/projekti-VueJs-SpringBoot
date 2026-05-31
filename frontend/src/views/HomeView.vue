@@ -16,7 +16,6 @@
     </header>
 
     <main class="content">
-      <!-- SEKSIONI HERO (VETEM PER USERAT) -->
       <section class="user-hero-section" v-if="!authStore.isAdmin">
         <div class="hero-card">
           <div class="hero-text">
@@ -35,8 +34,6 @@
           </div>
         </div>
       </section>
-
-      <!-- SEKSIONI I INPUTIT (VETEM PER ADMIN) -->
       <section class="form-section" v-if="authStore.isAdmin">
         <div class="form-card">
           <h2 class="section-title">
@@ -81,8 +78,6 @@
           </div>
         </div>
       </section>
-
-      <!-- SEKSIONI I LISTES -->
       <section class="list-section">
         <h2 class="section-title">Current Inventory ({{ products.length }})</h2>
 
@@ -294,7 +289,6 @@ onMounted(() => {
 .thin { font-weight: 100; color: #ccc; }
 .subtitle { font-size: 10px; letter-spacing: 5px; color: #999; margin-top: 10px; text-transform: uppercase; font-weight: 700; }
 
-/* 3. HERO CARD (USER) */
 .hero-card {
   background: #000;
   color: #fff;

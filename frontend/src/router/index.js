@@ -12,7 +12,6 @@ const router = createRouter({
   routes
 });
 
-// Kjo pjesë e detyron faqen me shku te Login nëse s'je i loguar
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token');
   if (to.path !== '/login' && !token) {

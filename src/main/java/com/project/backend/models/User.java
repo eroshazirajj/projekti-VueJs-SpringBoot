@@ -1,11 +1,11 @@
 package com.project.backend.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -22,7 +22,7 @@ public class User {
     @NotBlank
     private String password;
 
-    private String role; // Shembull: ROLE_USER ose ROLE_ADMIN
+    private String role;
 
     public User() {}
 

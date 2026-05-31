@@ -5,7 +5,6 @@ public class JwtResponse {
     private String username;
     private String role;
 
-    // Konstruktori me 3 parametra
     public JwtResponse(String token, String username, String role) {
         this.token = token;
         this.username = username;

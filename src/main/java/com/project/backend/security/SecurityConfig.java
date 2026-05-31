@@ -33,7 +33,6 @@ public class SecurityConfig {
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
-        // Në Spring Security 7, duhet t'ia japësh "userDetailsService" brenda kllapave!
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
@@ -56,7 +55,6 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
                 );
 
-        // KJO ISHTE PJESA QË MUNGONTE: Lidhja e provider-it
         http.authenticationProvider(authenticationProvider());
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

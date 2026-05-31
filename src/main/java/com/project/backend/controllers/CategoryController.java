@@ -13,7 +13,7 @@ import com.project.backend.repositories.CategoryRepository;
 
 @RestController
 @RequestMapping("/api/categories")
-@CrossOrigin(origins = "http://localhost:5173") // Lejon Vue.js ta thërrasë
+@CrossOrigin(origins = "http://localhost:5173") 
 public class CategoryController {
 
     @Autowired

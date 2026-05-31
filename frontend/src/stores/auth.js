@@ -16,7 +16,6 @@ export const useAuthStore = defineStore("auth", {
       try {
         const response = await axios.post("http://localhost:8081/api/auth/login", userData);
         
-        // Pranimi i të dhënave pa marrë parasysh emërtimin nga backend-i
         const token = response.data.accessToken || response.data.token;
         const username = response.data.username;
         const role = response.data.role;
@@ -27,8 +26,6 @@ export const useAuthStore = defineStore("auth", {
 
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(this.user));
-
-          // Vendosja e header-it global
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         }
         return response.data;
@@ -44,7 +41,6 @@ export const useAuthStore = defineStore("auth", {
       localStorage.removeItem("user");
       delete axios.defaults.headers.common["Authorization"];
     },
-    // Shto këtë metodë për t'u thirrur te main.js ose onMounted
     initializeAuth() {
       if (this.token) {
         axios.defaults.headers.common["Authorization"] = `Bearer ${this.token}`;

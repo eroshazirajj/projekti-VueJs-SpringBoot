@@ -20,12 +20,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Sigurohu që UserRepository e ka metodën findByUsername
-        User user = userRepository.findByUsername(username)
+      User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
-        // KJO ËSHTË E RËNDËSISHME: Roli duhet të ketë "ROLE_" para nëse përdor hasRole në Backend
-        String role = user.getRole().startsWith("ROLE_") ? user.getRole() : "ROLE_" + user.getRole();
+     String role = user.getRole().startsWith("ROLE_") ? user.getRole() : "ROLE_" + user.getRole();
 
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getUsername())

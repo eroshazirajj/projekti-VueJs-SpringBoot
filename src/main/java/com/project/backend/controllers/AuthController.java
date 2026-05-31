@@ -54,12 +54,10 @@ public class AuthController {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
-
-// Zëvendëso rreshtin e vjetër me këtë:
         return ResponseEntity.ok(new JwtResponse(
                 jwt,
                 userDetails.getUsername(),
-                roles.get(0) // Merr rolin e parë nga lista (ROLE_ADMIN ose ROLE_USER)
+                roles.get(0) 
         ));
     }
 
@@ -73,7 +71,6 @@ public class AuthController {
         user.setUsername(signUpRequest.getUsername());
         user.setPassword(encoder.encode(signUpRequest.getPassword()));
 
-        // Merr rolin nga frontendi, nese nuk ka, vendos ROLE_USER si default
         String strRole = signUpRequest.getRole();
         if (strRole == null || strRole.isEmpty()) {
             user.setRole("ROLE_USER");
